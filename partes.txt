@@ -1,0 +1,62 @@
+    private fun calculaOperacion(lista: MutableList<Any>): MutableList<Any> {
+        val nuevaLista = mutableListOf<Any>()
+        var iniciaIndice=lista.size
+
+        for (i in lista.indices)
+        {
+            if (lista[i] is Char &&  i != lista.lastIndex && i < iniciaIndice)
+            {
+                val operador = lista[i]
+                val operadorAnterior = lista[i-1] as Float
+                val siguiente= lista [i + 1] as Float
+                when(operador)
+                {
+                    'x'->
+                    {
+                     nuevaLista.add(operadorAnterior*siguiente)
+                        iniciaIndice= i+1
+                    }
+                    '/'->
+                    {
+                        nuevaLista.add(operadorAnterior/siguiente)
+                        iniciaIndice= i+1
+                    }
+                    else ->
+                    {
+                        nuevaLista.add(operadorAnterior)
+                        nuevaLista.add(operador)
+                    }
+                }
+            }
+            if (i>iniciaIndice)
+                nuevaLista.add(lista[i])
+        }
+    return nuevaLista
+    }
+
+    private fun sumayresta(lista: MutableList<Any>):Float
+    {
+        var result = lista[0] as Float
+        for(i in lista.indices)
+        {
+            if (lista[i] is Char && i != lista.lastIndex)
+            {
+                val operador = lista[i]
+                val siguiete = lista[i+1] as Float
+
+                if (operador == '+')
+                {
+                    result += siguiete
+                }
+                if (operador == '-')
+                {
+                    result -=siguiete
+                }
+            }
+        }
+        return result
+    }
+
+
+
+
